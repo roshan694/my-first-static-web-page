@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal to Sauce</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #proposal-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #pickup-lines {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        #heart {
+            color: red;
+            font-size: 24px;
+        }
+
+        #response-buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        #accept-button {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        #reject-button {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        #marriage-date-input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="proposal-container">
+        <h1>Hey Sauce,</h1>
+        <p>From the moment I met you, my life has been spicier and more flavorful. You're the special ingredient I've been searching for.</p>
+        <p>Would you be the hot sauce to my tacos and the sweetness to my desserts for the rest of my life?</p>
+        <p><span id="heart">&hearts;</span> Love, From Roshan</p>
+
+        <div id="pickup-lines">
+            <h3>I was curious and wanted to ask you a few things-</h3>
+            <ul>
+                <li>Are you a magician? Because whenever I look at you, everyone else disappears.</li>
+                <li>Do you have a name, or can I call you mine?</li>
+                <li>If beauty were time, you'd be an eternity.</li>
+            </ul>
+        </div>
+
+        <div id="marriage-date-input">
+            <label for="marriage-date">Since when we are in this beautiful relationship:</label>
+            <input type="date" id="marriage-date">
+        </div>
+
+        <div id="response-buttons">
+            <button class="button" id="accept-button" onclick="acceptProposal()">Accept</button>
+            <button class="button" id="reject-button" onclick="rejectProposal()">Reject</button>
+        </div>
+    </div>
+
+    <script>
+        function acceptProposal() {
+            var marriageDateInput = document.getElementById("marriage-date");
+            var marriageDate = marriageDateInput.value;
+
+            if (marriageDate) {
+                var today = new Date();
+                var anniversaryDate = new Date(marriageDate);
+
+                var yearsDiff = today.getFullYear() - anniversaryDate.getFullYear();
+                var monthsDiff = today.getMonth() - anniversaryDate.getMonth();
+                var daysDiff = today.getDate() - anniversaryDate.getDate();
+
+                if (daysDiff < 0) {
+                    var lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, anniversaryDate.getDate());
+                    var daysInLastMonth = new Date(lastMonth.getFullYear(), lastMonth.getMonth() + 1, 0).getDate();
+                    daysDiff = daysInLastMonth + daysDiff;
+                    monthsDiff--;
+                }
+
+                if (monthsDiff < 0) {
+                    monthsDiff = 12 + monthsDiff;
+                    yearsDiff--;
+                }
+
+                alert("Congratulations! You and Roshan will be together forever. 🎉\n It's been " + yearsDiff + " years, " + monthsDiff + " months, and " + daysDiff + " days since you two are in this beautiful relationship.");
+            } else {
+                alert("Please enter the date since when we are together before accepting.");
+            }
+        }
+
+        function rejectProposal() {
+            alert("Sorry bb, you can't reject it. 😢");
+        }
+    </script>
+</body>
+</html>
